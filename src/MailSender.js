@@ -17,10 +17,7 @@ class MailSender {
       from: 'openMusicApp@mail.com',
       to: targetEmail,
       subject: `Ekspor lagu playlist - ${playlistName}`,
-      text: `
-      Hasil ekspor lagu pada playlist ${playlistName}: \n
-      
-      `,
+      text: `Berikut hasil ekspor lagu pada playlist ${playlistName}`,
       attachments: [
         {
           filename: `${playlistId}.json`,
