@@ -8,10 +8,9 @@ class PlaylistSongService {
 
   async getPlaylistSongs (playlistId) {
     const query = {
-      text: /* sql */ `SELECT playlists.*, users.username, songs.id as songs_id, songs.title, songs.performer FROM playlists
+      text: /* sql */ `SELECT playlists.*, songs.id as songs_id, songs.title, songs.performer FROM playlists
       LEFT JOIN playlist_songs ON playlist_songs.playlist_id = playlists.id
       LEFT JOIN songs ON songs.id = playlist_songs.song_id
-      LEFT JOIN users ON users.id = playlists.owner
       WHERE playlists.id = $1`,
       values: [playlistId]
     }
@@ -25,7 +24,8 @@ class PlaylistSongService {
     }))
 
     return {
-      ...result.rows[0],
+      id: result.rows[0].id,
+      name: result.rows[0].name,
       songs
     }
   }
